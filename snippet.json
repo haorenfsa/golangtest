@@ -1,0 +1,55 @@
+{
+	"test mocks": {
+		"prefix": "tm",
+		"body": [
+			"type Mocks struct {",
+			"\tctl *gomock.Controller",
+			"}",
+			"func setupToTestMocks(t *testing.T) *toTestMocks {",
+			"\tret := new(Mocks)",
+			"\tret.ctl = gomock.NewController(t)",
+			"\treturn ret",
+			"}",
+			"func (t *toTestMocks) teardown() {",
+			"\tt.ctl.Finish()",
+			"}",
+		],
+		"description": "Log output to console"
+	},
+
+	"test with mocks": {
+		"prefix": "tfm",
+		"body": [
+			"func Test(t *testing.T) {",
+			"\ttests := []struct {",
+			"\t\tname   string",
+			"\t\tmock   func(*toTestMocks)",
+			"\t\tassert func(ret error)",
+			"\t}{",
+			"\t\t// TODO: Add test cases.",
+			"\t\t{",
+			"\t\t\tname:   \"test sample\",",
+			"\t\t\tmock: func(mocks *toTestMocks) {",
+			"\t\t\tassert: func(ret error) {},",
+			"\t\t}",
+			"\t}",
+			"\tfor _, tt := range tests {",
+			"\t\tt.Run(tt.name, func(t *testing.T) {",
+			"\t\t\tmocks := setupToMocks(t)",
+			"\t\t\tdefer mocks.teardown()",
+			"\t\t\t// TODO: init your struct",
+			"\t\t\tif tt.mock != nil {",
+			"\t\t\t\ttt.mock(mocks)",
+			"\t\t\t}",
+			"\t\t\t// TODO: call struct method here, eg below:",
+			"\t\t\terr := func()error{return nil}()",
+			"\t\t\tif tt.assert != nil {",
+			"\t\t\t\ttt.assert(err)",
+			"\t\t\t}",
+			"\t\t})",
+			"\t}",
+			"}"
+		],
+		"description": "Log output to console"
+	}
+}
